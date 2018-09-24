@@ -5,6 +5,7 @@ import cors from 'cors';
 // DATABASE
 //MongoDB
 import database from './database.js'
+import User from './models/userModel';
 const db_name = "balaizProto"
 database.connectDb(db_name);
 
@@ -25,6 +26,31 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(cors());
 
+//Instantiate passportJs
+app.use(passport.initialize());
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+    },
+    User.authenticate()
+));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+passport.use(new JWTStrategy({
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    secretOrKey   : 'SecretToEditAndAddToignoredfile'
+    },
+    function (jwtPayload, cb) {
+        //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
+        return User.findById(jwtPayload.id)
+            .then(user => {
+                return cb(null, user);
+            })
+            .catch(err => {
+                return cb(err);
+            });
+    }
+))
 
 // Routes
 import routes from './config/routes';
