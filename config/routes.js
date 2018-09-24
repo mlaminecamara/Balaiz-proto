@@ -13,4 +13,6 @@ router.post('/login', (req, res, next) => {
     AuthController.login(req, res, next);
 });
 
+router.post('/applicant-form',(req,res))
+
 export default router;
