@@ -53,7 +53,7 @@ AuthController.login = async (req, res, next) => {
                     res.send(err);
                 }
                 // generate a signed son web token with the contents of user object and return it in the response
-                const token = jwt.sign({ id: user.id, email: user.username}, 'SecretToEditAndAddToignoredfile');
+                const token = jwt.sign({ id: user.id, email: user.username}, 'SecretToEditAndAddToignoredfile', { expiresIn: '30m' });
                 return res.json({user: user.username, firstName: user.firstName, lastName: user.lastName, token});
             });
         })(req, res);

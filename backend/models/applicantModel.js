@@ -47,8 +47,7 @@ let ApplicantSchema = new Schema({
         enum:['PHP', 'NodeJS','Python','JAVA','C#',
             ], required:"Selectionnez au moins une stack BackEnd"},
 
-    Framework_Back:{type:String, enum:['Symfony','Express','JEE',
-    'Hibernate','Spring','Django','.NET', 'Laravel','Ruby on Rails',
+    Framework_Back:{type:String, enum:['Symfony','Express','JEE','Spring','Django','.NET', 'Laravel','Ruby on Rails',
     'Hapi','Koa','Sails','CakePHP','CodeIgniter','FuelPHP','Slim','Flask'
     ]},
 
