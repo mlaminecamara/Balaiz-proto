@@ -1,8 +1,8 @@
-//require('dotenv').config()
+require('dotenv').config()
 import mongoose from 'mongoose';
 
-exports.connectDb = (url) => {
-    mongoose.connect('mongodb://balaizadmin:B9Kc49py@ds247290.mlab.com:47290/balaizproto', { useCreateIndex: true,useNewUrlParser: true })
+exports.connectDb = () => {
+    mongoose.connect(process.env.DB_URL, { useCreateIndex: true, useNewUrlParser: true })
     
     const connection = mongoose.connection
 
