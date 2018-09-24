@@ -1,6 +1,7 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema;
 import User from models.userModel;
+import passportLocalMongoose from  'passport-local-mongoose';
 
 let CompanySchema = new Schema({
     user: {type: mongoose.Schema.Types.ObjectId, ref:User},
@@ -45,7 +46,7 @@ let CompanySchema = new Schema({
 
 });
 
-// userSchema.plugin(passportLocalMongoose);
+CompanySchema.plugin(passportLocalMongoose);
 
 let Company = mongoose.model('Company',CompanySchema);
 
