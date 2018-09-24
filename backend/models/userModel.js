@@ -10,12 +10,12 @@ let userSchema = new Schema({
     password: String,
     mobile: String, 
     status: {type: String, enum: ['applicant', 'recruiter', 'admin']},
-    role: {
-        type: String, 
-        required: () => {
-            return this.status !== 'applicant';
-        }
-    },
+    // role: {
+    //     type: String, 
+    //     required: () => {
+    //         return this.status !== 'applicant';
+    //     }
+    // },
     created_at: Date,
     updated_at: Date,
     last_login: Date

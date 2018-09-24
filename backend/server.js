@@ -6,8 +6,7 @@ import cors from 'cors';
 //MongoDB
 import database from './database.js'
 import User from './models/userModel';
-const db_name = "balaizProto"
-database.connectDb(db_name);
+database.connectDb();
 
 
 //PassportJS
