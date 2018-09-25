@@ -15,8 +15,15 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/applicant',(req,res) =>{
-    console.log('bla');
     FormController.applicant(req,res);
+});
+
+router.get('/applicant',(req,res) =>{
+    FormController.Show_Applicant(req,res);
+});
+
+router.delete('/applicant',(req,res) =>{
+    FormController.Delete_Applicant(req,res);
 });
 
 router.post('/company',(req,res) =>{

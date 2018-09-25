@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 import User from './userModel';
 import passportLocalMongoose from  'passport-local-mongoose';
 
+
+
 let ApplicantSchema = new Schema({ 
 
     user: {type: mongoose.Schema.Types.ObjectId, ref:User},
