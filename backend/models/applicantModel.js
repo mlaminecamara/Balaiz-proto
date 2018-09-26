@@ -1,9 +1,6 @@
 import mongoose, { models } from 'mongoose'
 const Schema = mongoose.Schema;
 import User from './userModel';
-import passportLocalMongoose from  'passport-local-mongoose';
-
-
 
 let ApplicantSchema = new Schema({ 
 
@@ -62,7 +59,6 @@ let ApplicantSchema = new Schema({
     updated_at: Date
 });
 
-ApplicantSchema.plugin(passportLocalMongoose);
 
 let Applicant = mongoose.model('Applicant',ApplicantSchema);
 
