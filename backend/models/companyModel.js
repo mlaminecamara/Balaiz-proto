@@ -13,7 +13,7 @@ let CompanySchema = new Schema({
 
     Contact_Email: String,
 
-    Contact_Tel: Number,
+    Contact_Tel: String,
 
     Company_Industry:  {type:String, required:"Renseignez votre industrie"},
     
@@ -39,6 +39,8 @@ let CompanySchema = new Schema({
         ]},
     
     Database:{type: String , enum: ['MongoDB', 'SQL', 'Graph'], required:"Selectionnez au moins une base de données"},
+    
+    Tags: {type: String, enum:['Mobile','Full-stack','Back-end','Front-End', 'IoT', 'Security'] },
 
     created_at: Date,
 

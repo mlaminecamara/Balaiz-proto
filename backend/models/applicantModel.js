@@ -10,7 +10,7 @@ let ApplicantSchema = new Schema({
 
     lastName: {type:String, required:"Le nom est obligatoire"},
 
-    tel:{type: Number, required:"Le numéro de téléphone est obligatoire"},
+    tel:{type: String, required:"Le numéro de téléphone est obligatoire"},
 
     email: String,
 

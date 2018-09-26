@@ -1,13 +1,13 @@
-import Applicant from '../models/applicantModel';
+import Company from '../models/companyModel';
 import jwt from 'jsonwebtoken';
 require("babel-polyfill");
 
 let moment = require('moment'); 
 
-const Applicant_Form_Controller = {};
+const Company_Form_Controller = {};
 
-// Method to display user applicant form 
-Applicant_Form_Controller.Show_Applicant = async(req, res) => {
+// Method to display user company form 
+Company_Form_Controller.Show_Company = async(req, res) => {
     const bearerheader = req.headers["authorization"];
 
     if(typeof bearerheader != undefined)
@@ -26,36 +26,30 @@ Applicant_Form_Controller.Show_Applicant = async(req, res) => {
         return (err);
     return user;
     })
-    if(user.status == 'applicant')
+    if(user.status == 'recruiter')
     {
         let query = {user: user.id};
         let fields= {
-            firstName:true,
-            lastName:true,
-            tel:true,
-            email:true,
-            school:true,
-            Ed_Type:true,
-            Github:true,
-            Start_Date:true,
+            Company_Name:true,
+            Contact_Name:true,
+            Contact_Position:true,
+            Contact_Email:true,
+            Contact_Tel:true,
+            Company_Industry:true,
+            Internship_Startdate:true,
             Duration:true,
-            Max_finish_Date:true,
-            Last_Internship:true,
-            Active_Status:true,
-            Webdev_Experience:true,
+            Mission_Description:true,
             FrontEnd_Stack:true,
-            Projects_Description:true,
-            Database:true,
-            Next_Internship_Startdate:true,
             BackEnd_Stack:true,
             Framework_Back:true,
+            Database:true,
             Tags:true
         }
 
-        Applicant.findOne(query,fields,function(err,user){
+        Company.findOne(query,fields,function(err,user){
             if(err)
                 return (err);
-            return res.status(200).send("Form submitted");
+            return res.status(200).send("Form company submitted");
         });
 
     }
@@ -63,13 +57,11 @@ Applicant_Form_Controller.Show_Applicant = async(req, res) => {
 }
 
 
-// Method to find and modify applicant form, if doesn't exist, create applicant form.
-Applicant_Form_Controller.Add_Applicant = async(req, res) => {
-    let formatted_StartDate = moment(req.body.Start_Date, "DD/MM/YYYY");
-    //console.log(formatted_StartDate);
-    let formatted_MaxFinishDate = moment(req.body.Max_finish_Date,"DD/MM/YYYY");
-    let formatted_NextIntershipStartDate = moment(req.body.Next_Internship_Startdate,"DD/MM/YYYY");
+// Method to find and modify company form, if doesn't exist, create company form.
+Company_Form_Controller.Add_Company = async(req, res) => {
 
+    let formatted_Internship_Startdate = moment(req.body.Internship_Startdate, "DD-MM-YYYY");
+    //console.log(formatted_Internship_Startdate);
     const bearerheader = req.headers["authorization"];
 
     if(typeof bearerheader != undefined)
@@ -89,47 +81,40 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
     return user;
     })
     
-    if(user.status == 'applicant')
+    if(user.status == 'recruiter')
     {
         let query = {user: user.id};
         let update= {
-            user: user.id,
-            firstName:req.body.firstName,
-            lastName:req.body.lastName,
-            tel:req.body.tel,
-            email:req.body.email,
-            school:req.body.school,
-            Ed_Type:req.body.Ed_Type,
-            Github:req.body.Github,
-            Start_Date:formatted_StartDate,
+            Company_Name:req.body.Company_Name,
+            Contact_Name:req.body.Company_Name,
+            Contact_Position:req.body.Contact_Position,
+            Contact_Email:req.body.Contact_Email,
+            Contact_Tel:req.body.Contact_Tel,
+            Company_Industry:req.body.Company_Industry,
+            Internship_Startdate:formatted_Internship_Startdate,
             Duration:req.body.Duration,
-            Max_finish_Date:formatted_MaxFinishDate,
-            Last_Internship:req.body.Last_Internship,
-            Active_Status:req.body.Active_Status,
-            Webdev_Experience:req.body.Webdev_Experience,
+            Mission_Description:req.body.Mission_Description,
             FrontEnd_Stack:req.body.FrontEnd_Stack,
-            Projects_Description:req.body.Projects_Description,
-            Database:req.body.Database,
-            Next_Internship_Startdate:formatted_NextIntershipStartDate,
             BackEnd_Stack:req.body.BackEnd_Stack,
             Framework_Back:req.body.Framework_Back,
+            Database:req.body.Database,
             Tags:req.body.Tags
         }
         let options = {upsert:true, new:true, setDefaultsOnInsert:true}
 
-        Applicant.findOneAndUpdate(query,update,options,function(err,user){
+        Company.findOneAndUpdate(query,update,options,function(err,user){
             if(err)
                 return (err);
             //console.log(req.body.firstName);
-            return res.redirect('applicant');
+            return res.redirect('company');
         });
 
     }
 
 }
 
-// Method to delete user applicant form
-Applicant_Form_Controller.Delete_Applicant = async(req, res) => {
+// Method to delete user company form
+Company_Form_Controller.Delete_Company = async(req, res) => {
     const bearerheader = req.headers["authorization"];
 
     if(typeof bearerheader != undefined)
@@ -149,13 +134,13 @@ Applicant_Form_Controller.Delete_Applicant = async(req, res) => {
     return user;
     })
     
-    if(user.status == 'applicant')
+    if(user.status == 'recruiter')
     {   
         let id = {user: user.id};
-        Applicant.findOneAndDelete(id, function(err, user){
+        Company.findOneAndDelete(id, function(err, user){
             if(err)
                 return (err);
-            return res.status(200).send("Applicant deleted");
+            return res.status(200).send("Company deleted");
 
         })
     }
@@ -163,6 +148,6 @@ Applicant_Form_Controller.Delete_Applicant = async(req, res) => {
 }
 
 
-export default Applicant_Form_Controller 
+export default Company_Form_Controller 
 
 

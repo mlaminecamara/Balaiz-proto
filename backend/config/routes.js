@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import AuthController from '../controllers/auth.controller';
 import Applicant_Form_Controller from '../controllers/Applicant_Form.controller';
-
+import Company_Form_Controller from '../controllers/Company_Form.controller'
 
 const router = new Router();
 
@@ -31,11 +31,11 @@ router.get('/company',(req,res) =>{
 });
 
 router.post('/company',(req,res) =>{
-    Company_Form_Controller.Add_company(req,res);
+    Company_Form_Controller.Add_Company(req,res);
 });
 
 router.delete('/company',(req,res) =>{
-    Company_Form_Controller.Delete_company(req,res);
+    Company_Form_Controller.Delete_Company(req,res);
 });
 
 
