@@ -5,10 +5,10 @@ require("babel-polyfill");
 
 let moment = require('moment'); 
 
-const FormController = {};
+const Applicant_Form_Controller = {};
 
 // Method to display user applicant form 
-FormController.Show_Applicant = async(req, res) => {
+Applicant_Form_Controller.Show_Applicant = async(req, res) => {
     const bearerheader = req.headers["authorization"];
 
     if(typeof bearerheader != undefined)
@@ -65,7 +65,7 @@ FormController.Show_Applicant = async(req, res) => {
 
 
 // Method to find and modify applicant form, if doesn't exist, create applicant form.
-FormController.applicant = async(req, res) => {
+Applicant_Form_Controller.Add_Applicant = async(req, res) => {
     let formatted_StartDate = moment(req.body.Start_Date, "DD/MM/YYYY");
     //console.log(formatted_StartDate);
     let formatted_MaxFinishDate = moment(req.body.Max_finish_Date,"DD/MM/YYYY");
@@ -130,7 +130,7 @@ FormController.applicant = async(req, res) => {
 }
 
 // Method to delete user applicant form
-FormController.Delete_Applicant = async(req, res) => {
+Applicant_Form_Controller.Delete_Applicant = async(req, res) => {
     const bearerheader = req.headers["authorization"];
 
     if(typeof bearerheader != undefined)
@@ -164,6 +164,6 @@ FormController.Delete_Applicant = async(req, res) => {
 }
 
 
-export default FormController 
+export default Applicant_Form_Controller 
 
 
