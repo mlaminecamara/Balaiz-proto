@@ -53,7 +53,7 @@ passport.use(new JWTStrategy({
 
 // Routes
 import routes from './config/routes';
-import auth from './config/authRoutes';
+import auth from './config/auth.routes';
 app.use('/api',passport.authenticate('jwt',{session: false}), routes);
 app.use('/auth', auth);
 // Launch Server
