@@ -53,6 +53,8 @@ passport.use(new JWTStrategy({
 
 // Routes
 import routes from './config/routes';
+import auth from './config/authRoutes';
 app.use('/api', routes);
+app.use('/auth',passport.authenticate('jwt',{session: false}), auth);
 // Launch Server
 app.listen(8080, () => console.log("Running on 8080"))
