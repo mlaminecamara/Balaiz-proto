@@ -16,15 +16,14 @@ const httpOptions = {
     providedIn: 'root'
   })
 
-export class ApplicantService{
+export class ApplicantService {
 
-constructor(private http: HttpClient,private router: Router)
-{
+constructor(private http: HttpClient, private router: Router) {
 
 }
-    addApplicant(update){
+    addApplicant(update) {
         const addedApplicant = {"update":"test"}
-        //console.log(addedApplicant)
+        // console.log(addedApplicant)
         return this.http.post('http://localhost:8080/api/applicant', addedApplicant, httpOptions)
         .pipe(map(res => console.log(res)))
         .subscribe(res => res)
