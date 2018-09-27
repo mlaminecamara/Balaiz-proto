@@ -22,7 +22,6 @@ constructor(private http: HttpClient,private router: Router)
 {
 
 }
-
     addApplicant(fields){
         const addedApplicant = {"fields":fields}
         console.log(addedApplicant)

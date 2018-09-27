@@ -23,7 +23,7 @@
                         </div>
 
                         <div [formGroup]="DropDowns">
-                            <label for=""> Quel type de formation avez-vous eu ?</label>
+                            <label for=""> Quel type de formation as-tu suivi?</label>
                             <select class="form-control input-lg"  formControlName="Ed_Type" placeholder="Education" id="education" name="Ed_Type" required>
                             <option [value]="ed" *ngFor="let ed of Ed_Type"> {{ ed }}</option>
                             </select>
