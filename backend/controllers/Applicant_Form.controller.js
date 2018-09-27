@@ -55,7 +55,7 @@ Applicant_Form_Controller.Show_Applicant = async(req, res) => {
         Applicant.findOne(query,fields,function(err,user){
             if(err)
                 return (err);
-            return res.status(200).send("Form submitted");
+            return res.status(200).json(fields);
         });
 
     }

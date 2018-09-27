@@ -1,1 +1,124 @@
-<h1> Applicant </h1>
+<div class="container-fluid py-3">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+                <div class="card card-body">
+                    <h3 class="text-center mb-4">Formulaire candidat</h3>
+                    <form #postForm="ngForm" (ngSubmit)="onPost(postForm)" >
+                        <div class="form-group has-error">
+                            <input class="form-control input-lg" [(ngModel)]="model.firstname" placeholder="Prénom" id="firstname" name="firstname" type="text" required>
+                        </div>
+
+                        <div class="form-group has-error">
+                                <input class="form-control input-lg" [(ngModel)]="model.lastname" placeholder="Nom" id="lastname" name="lastname" type="text" required>
+                        </div>
+                        <div class="form-group has-error">                          
+                            <input class="form-control input-lg" [(ngModel)]="model.tel" placeholder="Telephone" id="tel" name="tel" type="" required>
+                        </div>  
+                        <div class="form-group has-error"> 
+                            <input class="form-control input-lg" [(ngModel)]="model.email" placeholder="E-mail" id="email" name="email" type="text" required>
+                        </div>
+
+                        <div class="form-group has-error">                             
+                            <input class="form-control input-lg" [(ngModel)]="model.school" placeholder="Ecole" id="school" name="school" type="text">
+                        </div>
+
+                        <div [formGroup]="DropDowns">
+                            <label for=""> Quel type de formation avez-vous eu ?</label>
+                            <select class="form-control input-lg"  formControlName="Ed_Type" placeholder="Education" id="education" name="Ed_Type" required>
+                            <option [value]="ed" *ngFor="let ed of Ed_Type"> {{ ed }}</option>
+                            </select>
+                        </div> <br>
+                        
+                        <div class="form-group has-error">                             
+                            <input class="form-control input-lg" [(ngModel)]="model.Github" placeholder="Github/LinkedIn/Site perso" id="Github" name="Github" type="text">
+                        </div><br>
+
+                        <div class="form-group has-error">
+                                <label for=""> A partir de quelle date es-tu disponible?</label>                       
+                            <input class="form-control input-lg" [(ngModel)]="model.Start_Date" placeholder="Date de debut de stage" id="Start_Date" name="Start_Date" type="text" required>
+                        </div><br>
+                        
+                        <div [formGroup]="DropDowns">
+                                <label for=""> Quelle est la durée de ton stage?</label>
+                            <select class="form-control input-lg"  formControlName="Duration" placeholder="Durée du stage" id="duration" name="Duration" required>
+                            <option [value]="duree" *ngFor="let duree of Duration"> {{ duree }}</option>
+                            </select>
+                        </div> <br>
+
+                        <div class="form-group has-error">
+                            <label for=""> Quand dois-tu finir ton stage au plus tard?</label>
+                            <input class="form-control input-lg" [(ngModel)]="model.Max_Finish_Date" placeholder="Date maximale de fin de stage" id="Max_Finish_Date" name="Max_Finish_Date" type="text">
+                        </div>
+
+                        <div [formGroup]="DropDowns">
+                            <label for=""> Est-ce ton stage de fin d'étude?</label>
+                            <select class="form-control input-lg" formControlName="Last_Internship"  placeholder="S'agit-il de votre dernier stage?" id="Last_Internship" name="Last_Internship"  required>
+                            <option [value]="lastIntern" *ngFor="let lastIntern of Last_Internship"> {{ lastIntern }}</option>
+                            </select>
+                        </div> <br>
+
+                        <div [formGroup]="DropDowns">
+                            <label for=""> Es-tu en recherche active?</label>
+                            <select class="form-control input-lg"  formControlName="Active_Status"  placeholder="Etes-vous en recherche active?" id="Active_Status" name="Active_Status" required>
+                            <option [value]="active" *ngFor="let active of Active_Status"> {{ active }}</option>   
+                            </select>
+                        </div><br>
+
+                        <div [formGroup]="DropDowns">
+                            <label for=""> As-tu de l'expérience en développement Web ?</label>
+                        
+                            <select class="form-control input-lg"  formControlName="Webdev_Experience" placeholder="Avez-vous de l'expérience en web development?" id="Webdev_Experience" name="Webdev_Experience" required>
+                            <option [value]="experience" *ngFor="let experience of Webdev_Experience"> {{ experience }}</option>   
+                            </select>
+                        </div><br>
+
+                        <div [formGroup]="DropDowns">
+                            <label for=""> Quelles technos Frontend as-tu déjà utilisé?</label>
+                            <select class="form-control input-lg"  formControlName="FrontEnd_Stack"  placeholder="Choisissez votre Stack frontend" id="FrontEnd_Stack" name="FrontEnd_Stack" required>
+                                <option [value]="front" *ngFor="let front of FrontEnd_Stack"> {{ front }}</option>   
+                            </select>
+                        </div><br>
+
+                        <div [formGroup]="DropDowns">
+                            <label for=""> Avec quelle techno es-tu expérimenté en base de données</label>
+                            <select class="form-control input-lg"  formControlName="Database"  placeholder="Avec quelles bases de données avez-vous travaillé?" id="Database" name="Database" type="text" required>
+                                <option [value]="database" *ngFor="let database of Database"> {{ database }}</option>                               
+                            </select>
+                        </div><br>
+
+                        
+                        <div [formGroup]="DropDowns">
+                            <label for=""> Quels langages serveurs as-tu déjà utilisé?</label>
+                            <select class="form-control input-lg"  formControlName="BackEnd_Stack" placeholder="Choisissez votre Stack backend" id="BackEnd_Stack" name="model.BackEnd_Stack" type="text" required>
+                                    <option [value]="back" *ngFor="let back of BackEnd_Stack"> {{ back }}</option>                                                               
+                            </select>
+                        </div><br>
+
+                        <div [formGroup]="DropDowns">
+                            <label for="">As-tu travaillé avec un Framework ?</label>
+                            <select class="form-control input-lg" formControlName="Framework_Back" placeholder="Choisissez votre framework back" id="Framework_Back" name="model.Framework_Back" type="text" required>
+                                    <option [value]="framework" *ngFor="let framework of Framework_Back "> {{ framework}}</option>                                                                                               
+                            </select>
+                        </div><br>
+
+                        <div class="form-group has-error"> 
+                                <label for="">Parle nous de tes projets réalisés</label>
+                                <textarea class="form-control input-lg" [(ngModel)]="model.Projects_Description" placeholder="Décrivez les projets déjà effectués" id="Projects_Description" name="Projects_Description" required>
+                                </textarea>
+                        </div>
+
+                        <div class="form-group has-error">
+                                <label for="">Quelle est la date de ton prochain stage, après celui-ci?</label>
+                                <input class="form-control input-lg" [(ngModel)]="model.Next_Internship_Startdate" placeholder="Quelle est la date de votre prochain stage?" id="Next_Internship_Startdate" name="model.Next_Internship_Startdate" type="text" >
+                        </div><br>
+
+                        <div [formGroup]="DropDowns">
+                            <label for="">Qu'est-ce qui vous qualifie le mieux en tant que développeur ?</label>
+                            <select class="form-control input-lg" formControlName="Tags" placeholder="Choisissez le tag qui vous correspond le plus?" id="model.Tags" name="Tags" type="text" required>
+                                    <option [value]="tag" *ngFor="let tag of Tags"> {{ tag }}</option>                                                                                               
+                            </select>
+                        </div><br>
+                        <input class="btn btn-lg btn-info btn-block" value="Soumettre" type="submit" [disabled]="!postForm.valid">
+                    </form>
+                </div>
+            </div>
