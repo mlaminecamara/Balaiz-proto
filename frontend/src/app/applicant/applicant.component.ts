@@ -9,7 +9,9 @@ import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
     providers:[ApplicantService]
 })
 export class ApplicantComponent implements OnInit{
+
     model: object = {};
+
     DropDowns:FormGroup;
 
 
@@ -17,6 +19,7 @@ export class ApplicantComponent implements OnInit{
     {
 
     }
+
     Ed_Type = ['Bootcamp','Computer Science School','University', 'Self taught', 'Engineering School']
     Duration = ['3 mois', '4 mois', '5 mois', '6 mois']
     Last_Internship = ['oui', 'non']
@@ -30,7 +33,6 @@ export class ApplicantComponent implements OnInit{
     'Hibernate','Spring','Django','.NET', 'Laravel','Ruby on Rails',
     'Hapi','Koa','Sails','CakePHP','CodeIgniter','FuelPHP','Slim','Flask']
     Tags= ['Mobile','Full-stack','Back-end','Front-End', 'IoT', 'Security']
-    
 
     ngOnInit(){
         this.DropDowns = this.fb.group({
@@ -49,10 +51,11 @@ export class ApplicantComponent implements OnInit{
 
     
     onPost(form : NgForm){
-        const value = {
-            fields: form.value
+        const value = 
+        {
+            update: form.value
         }
-        console.log(value);
+        //console.log(value);
         this.ApplicantService.addApplicant(value);
         }
 
