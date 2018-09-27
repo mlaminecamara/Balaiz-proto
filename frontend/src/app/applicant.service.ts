@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators';
 const httpOptions = {
     headers : new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYWE0NGQyODhkOThmMjYzN2IyZDQ0YyIsImVtYWlsIjoidXNlcjRAdGVzdC5jb20iLCJzdGF0dXMiOiJhcHBsaWNhbnQiLCJpYXQiOjE1MzgwNjQ0MTN9.DgUpUABLQdVUXI-qa4Rk7LZMVwW6gD_a_hUyS3XOQF8'
+      'Authorization':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViYWE0NGQyODhkOThmMjYzN2IyZDQ0YyIsImVtYWlsIjoidXNlcjRAdGVzdC5jb20iLCJzdGF0dXMiOiJhcHBsaWNhbnQiLCJpYXQiOjE1MzgwNjQ0MTN9.DgUpUABLQdVUXI-qa4Rk7LZMVwW6gD_a_hUyS3XOQF8'
     })
   }
 
