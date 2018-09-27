@@ -43,9 +43,10 @@ export class AuthService {
 
   public isAuthenticated(): boolean {
     const token = localStorage.getItem('jwtToken');
+    confirm(token);
     // If token not expired, return true
     if (token != null) {
-    return !this.jwtHelper.getTokenExpirationDate(token) || !this.jwtHelper.isTokenExpired(token);
+      return !this.jwtHelper.getTokenExpirationDate(token) || !this.jwtHelper.isTokenExpired(token);
     }
   }
 

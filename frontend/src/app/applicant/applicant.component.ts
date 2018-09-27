@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { ApplicantService } from "../applicant.service";
-import { NgForm, FormGroup, FormBuilder } from '@angular/forms';
+import { ApplicantService } from "./applicant.service";
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector:'app-applicant',
@@ -12,10 +12,9 @@ export class ApplicantComponent implements OnInit{
 
     model: object = {};
 
-    DropDowns:FormGroup;
 
 
-    constructor(private ApplicantService: ApplicantService, private fb: FormBuilder)
+    constructor()
     {
 
     }
@@ -35,28 +34,17 @@ export class ApplicantComponent implements OnInit{
     Tags= ['Mobile','Full-stack','Back-end','Front-End', 'IoT', 'Security']
 
     ngOnInit(){
-        this.DropDowns = this.fb.group({
-            Ed_Type: [''],
-            Duration:[''],
-            Last_Internship: [''],
-            Active_Status : [''],
-            Webdev_Experience : [''],
-            FrontEnd_Stack: [''],
-            Database:[''],
-            BackEnd_Stack :[''],
-            Framework_Back :[''],
-            Tags: [''],
-        })
+      console.log(localStorage.getItem('jwtToken'))
     }
 
-    
+
     onPost(form : NgForm){
-        const value = 
-        {
-            update: form.value
-        }
+        // const value =
+        // {
+        //     update: form.value
+        // }
         //console.log(value);
-        this.ApplicantService.addApplicant(value);
+        // this.ApplicantService.addApplicant(value);
         }
 
 }

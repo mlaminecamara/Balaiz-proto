@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
 import AuthController from '../controllers/auth.controller';
-import Applicant_Form_Controller from '../controllers/Applicant_Form.controller';
-import Company_Form_Controller from '../controllers/Company_Form.controller'
+import Applicant_Form_Controller from '../controllers/applicant.controller';
+import Company_Form_Controller from '../controllers/company.controller'
 
 const router = new Router();
 

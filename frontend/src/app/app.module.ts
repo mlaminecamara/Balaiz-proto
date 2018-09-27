@@ -24,7 +24,7 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: 'home',
+    path: 'applicant',
     component: ApplicantComponent,
     canActivate: [AuthGuard]
   },
