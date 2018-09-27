@@ -121,7 +121,7 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
             if(err)
                 return (err);
             //console.log(req.body.firstName);
-            return res.redirect('applicant');
+            return res.status(200).json(update);
         });
 
     }
