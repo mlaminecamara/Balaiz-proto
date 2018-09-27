@@ -1,22 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule, HttpClient} from '@angular/common/http'
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
-import {Routes, RouterModule} from '@angular/router'
 
 import { AppComponent } from './app.component';
 import { ApplicantComponent } from './applicant/applicant.component';
 import { CompanyComponent } from './company/company.component';
-
-
-const routes : Routes= [
-  {
-    path:'applicant',
-    component: ApplicantComponent
-  }
-
-];
 
 @NgModule({
   declarations: [
@@ -25,7 +14,6 @@ const routes : Routes= [
     CompanyComponent
   ],
   imports: [
-    RouterModule.forRoot(routes),
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
@@ -36,9 +24,7 @@ const routes : Routes= [
       }
     }),
     FormsModule,
-    BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
