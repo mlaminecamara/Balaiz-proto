@@ -45,6 +45,8 @@ const routes: Routes = [
     RegisterComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
+    HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
