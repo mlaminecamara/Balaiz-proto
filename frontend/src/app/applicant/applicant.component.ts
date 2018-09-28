@@ -10,7 +10,7 @@ import {AuthService} from "../auth.service"
     providers:[ApplicantService, AuthService]
 })
 export class ApplicantComponent implements OnInit{
-
+    
     model: object = {};
 
     constructor(private authservice: AuthService, private ApplicantService: ApplicantService )
@@ -39,9 +39,8 @@ export class ApplicantComponent implements OnInit{
 
     onPost(form : NgForm){
         const value = form.value
-    
         //console.log(value);
-        this.ApplicantService.addApplicant(value);
+        this.ApplicantService.addApplicant(value).subscribe(res => console.log(res));
         }
 
         OnLogout(form: NgForm){

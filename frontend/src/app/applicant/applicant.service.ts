@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import {map} from 'rxjs/operators';
+import {tap} from 'rxjs/operators';
 
 const HttpOptions = 
 {
@@ -17,21 +17,21 @@ const HttpOptions =
   })
 
 export class ApplicantService {
-
+ public data: any;
 constructor(private http: HttpClient, private router: Router) {
 
 }
-    addApplicant(update) {
+    addApplicant(update ) {
       console.log("cc")
-      const addedApplicant = {"update":update}
+      const addedApplicant = update
       //console.log(addedApplicant)
-      return this.http.post('http://localhost:8080/api/applicant', "test", HttpOptions)
-      .subscribe(res => {
-        console.log(res)
-
-        })
-      //.pipe(map(res => console.log(res)))
+      return this.http.post('http://localhost:8080/api/applicant', addedApplicant, HttpOptions)
+      .pipe(tap(res =>{
+        this.data = res;
+        console.log(res);
+        return this.data;
+      }))
       
-     }
+}
 }
 

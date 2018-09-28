@@ -120,7 +120,7 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
         Applicant.findOneAndUpdate(query,update,options,function(err,user){
             if(err)
                 return (err);
-            //console.log(req.body.firstName);
+            console.log(req.body.firstName);
             return res.status(200).json(update);
         });
 
