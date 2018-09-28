@@ -67,7 +67,7 @@ Applicant_Form_Controller.Show_Applicant = async(req, res) => {
 Applicant_Form_Controller.Add_Applicant = async(req, res) => {
     let formatted_StartDate = moment(req.body.Start_Date, "DD/MM/YYYY");
     //console.log(formatted_StartDate);
-    let formatted_MaxFinishDate = moment(req.body.Max_finish_Date,"DD/MM/YYYY");
+    let formatted_MaxFinishDate = moment(req.body.Max_Finish_Date,"DD/MM/YYYY");
     let formatted_NextIntershipStartDate = moment(req.body.Next_Internship_Startdate,"DD/MM/YYYY");
 
     const bearerheader = req.headers["authorization"];
@@ -103,7 +103,7 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
             Github:req.body.Github,
             Start_Date:formatted_StartDate,
             Duration:req.body.Duration,
-            Max_finish_Date:formatted_MaxFinishDate,
+            Max_Finish_Date:formatted_MaxFinishDate,
             Last_Internship:req.body.Last_Internship,
             Active_Status:req.body.Active_Status,
             Webdev_Experience:req.body.Webdev_Experience,

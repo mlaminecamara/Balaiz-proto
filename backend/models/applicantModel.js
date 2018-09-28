@@ -43,9 +43,7 @@ let ApplicantSchema = new Schema({
 
     Next_Internship_Startdate:Date,
 
-    BackEnd_Stack: {type: String,
-        enum:['PHP', 'NodeJS','Python','JAVA','C#',
-            ], required:"Selectionnez au moins une stack BackEnd"},
+    BackEnd_Stack: {type: String , enum: ['PHP', 'NodeJS','Python','JAVA','C#'], required:"Selectionnez au moins une stack BackEnd"},
 
     Framework_Back:{type:String, enum:['Symfony','Express','JEE',
     'Hibernate','Spring','Django','.NET', 'Laravel','Ruby on Rails',

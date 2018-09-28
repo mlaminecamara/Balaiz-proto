@@ -26,7 +26,7 @@ export class ApplicantComponent implements OnInit{
     FrontEnd_Stack = ['Angular', 'Angularjs','BackboneJs', 'Blade','EmberJs','Jade',
     'JQuery','Pug','React','Twig','Vue','Phonegap','ionic','Android Studio','React Native']
     Database = ['MongoDB', 'SQL', 'Graph']
-    BackEnd_Stack= ['PHP', 'NodeJS','Python','JAVA','C#']
+    BackEnd_Stack = ['PHP', 'NodeJS','Python','JAVA','C#']
     Framework_Back= ['Symfony','Express','JEE',
     'Hibernate','Spring','Django','.NET', 'Laravel','Ruby on Rails',
     'Hapi','Koa','Sails','CakePHP','CodeIgniter','FuelPHP','Slim','Flask']
