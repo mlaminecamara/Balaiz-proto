@@ -1,20 +1,19 @@
 import { Component, OnInit } from "@angular/core";
-import { ApplicantService } from "./applicant.service";
+import { ApplicantService} from "./applicant.service";
 import { NgForm } from '@angular/forms';
+import {AuthService} from "../auth.service"
 
 @Component({
     selector:'app-applicant',
     templateUrl:'./applicant.component.html',
     styleUrls:['./applicant.component.css'],
-    providers:[ApplicantService]
+    providers:[ApplicantService, AuthService]
 })
 export class ApplicantComponent implements OnInit{
 
     model: object = {};
 
-
-
-    constructor()
+    constructor(private authservice: AuthService, private ApplicantService: ApplicantService )
     {
 
     }
@@ -39,12 +38,14 @@ export class ApplicantComponent implements OnInit{
 
 
     onPost(form : NgForm){
-        // const value =
-        // {
-        //     update: form.value
-        // }
+        const value = form.value
+    
         //console.log(value);
-        // this.ApplicantService.addApplicant(value);
+        this.ApplicantService.addApplicant(value);
+        }
+
+        OnLogout(form: NgForm){
+            this.authservice.logout()
         }
 
 }

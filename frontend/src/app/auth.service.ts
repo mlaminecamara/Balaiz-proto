@@ -18,7 +18,7 @@ export class AuthService {
       this.data = resp;
       console.log(this.data);
       localStorage.setItem('jwtToken', this.data.token);
-      this.router.navigate(['home']);
+      this.router.navigate(['applicant']);
     });
   }
 
