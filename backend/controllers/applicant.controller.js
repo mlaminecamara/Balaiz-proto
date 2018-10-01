@@ -82,15 +82,18 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
     else
         return res.status(403).send('Token not found');
     //console.log(req.token);
-    var user = jwt.decode(req.token, function (err, user)
-    {
-    if(err)
+
+    let user = jwt.decode(req.token, function (err, user){
+    if (err)
         return (err);
-    return user;
+    return (user);
     })
+
+    console.log(user);
     
     if(user.status == 'applicant')
-    {
+    {   
+        //console.log('cc')
         let query = {user: user.id};
         let update= {
             user: user.id,
@@ -120,7 +123,7 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
         Applicant.findOneAndUpdate(query,update,options,function(err,user){
             if(err)
                 return (err);
-            console.log(req.body.firstName);
+            //console.log(req.body.firstName);
             return res.status(200).json(update);
         });
 

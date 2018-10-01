@@ -22,7 +22,7 @@ constructor(private http: HttpClient, private router: Router) {
 
 }
     addApplicant(update ) {
-      console.log("cc")
+      //console.log("cc")
       const addedApplicant = update
       //console.log(addedApplicant)
       return this.http.post('http://localhost:8080/api/applicant', addedApplicant, HttpOptions)

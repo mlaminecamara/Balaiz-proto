@@ -23,15 +23,15 @@ app.use(bodyParser.urlencoded({
     extended: true
   }))
 app.use(bodyParser.json())
-//app.use(cors());
-app.use(function(req, res, next) {
-    console.log('ddd');
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Methods', 'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS');
-    console.log("cc");
-    next();
-})
+app.use(cors());
+// app.use(function(req, res, next) {
+//     //console.log('ddd');
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     res.header('Access-Control-Allow-Methods', 'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS');
+//     //console.log("cc");
+//     next();
+// })
 
 //Instantiate passportJs
 app.use(passport.initialize());
@@ -62,7 +62,7 @@ passport.use(new JWTStrategy({
 // Routes
 import routes from './config/routes';
 import auth from './config/auth.routes';
-app.use('/api',/*passport.authenticate('jwt',{session: false}),*/    routes);
+app.use('/api',passport.authenticate('jwt',{session: false}), routes);
 app.use('/auth', auth);
 // Launch Server
 app.listen(8080, () => console.log("Running on 8080"))
