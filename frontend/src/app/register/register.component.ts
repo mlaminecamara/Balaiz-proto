@@ -9,18 +9,33 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  model: object = {};
+  public statusApplicant = false;
+  public statusRecruiter = false;
+  public choix = [
+    {id: 1, name: 'Candidat'},
+    {id: 2, name: 'Entreprise'},
+  ];
+  selected = this.choix[0];
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
+
   onRegister(form: NgForm) {
-    const firstName = form.value.firstName;
-    const lastName = form.value.lastName;
-    const email = form.value.email;
-    const password = form.value.password;
-    this.authService.register(firstName, lastName, email, password);
+    if (form.invalid) {
+      return;
+    }
+      // console.log(this.statusApplicant);
+      // console.log(this.statusRecruiter);
+      const firstname = form.value.firstname;
+      const lastname = form.value.lastname;
+      const email = form.value.email;
+      const password = form.value.password;
+      const status = form.value.status.name;
+      this.authService.register(firstname, lastname, email, password, status);
+
   }
 
 }

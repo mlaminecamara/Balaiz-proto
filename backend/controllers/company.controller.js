@@ -1,5 +1,7 @@
 import Company from '../models/companyModel';
+import Applicant from '../models/applicantModel';
 import jwt from 'jsonwebtoken';
+import { execFile } from 'child_process';
 require("babel-polyfill");
 
 let moment = require('moment'); 
@@ -26,30 +28,14 @@ Company_Form_Controller.Show_Company = async(req, res) => {
         return (err);
     return user;
     })
-    if(user.status == 'recruiter')
+    if(user.status == 'Entreprise')
     {
         let query = {user: user.id};
-        let fields= {
-            Company_Name:true,
-            Contact_Name:true,
-            Contact_Position:true,
-            Contact_Email:true,
-            Contact_Tel:true,
-            Company_Industry:true,
-            Internship_Startdate:true,
-            Duration:true,
-            Mission_Description:true,
-            FrontEnd_Stack:true,
-            BackEnd_Stack:true,
-            Framework_Back:true,
-            Database:true,
-            Tags:true
-        }
 
-        Company.findOne(query,fields,function(err,user){
+        Company.findOne(query,function(err,user){
             if(err)
                 return (err);
-            return res.status(200).send("Form company submitted");
+            res.status(200).send("Form company submitted");
         });
 
     }
@@ -81,12 +67,12 @@ Company_Form_Controller.Add_Company = async(req, res) => {
     return user;
     })
     
-    if(user.status == 'recruiter')
+    if(user.status == 'Entreprise')
     {
         let query = {user: user.id};
         let update= {
             Company_Name:req.body.Company_Name,
-            Contact_Name:req.body.Company_Name,
+            Contact_Name:req.body.Contact_Name,
             Contact_Position:req.body.Contact_Position,
             Contact_Email:req.body.Contact_Email,
             Contact_Tel:req.body.Contact_Tel,
@@ -106,7 +92,7 @@ Company_Form_Controller.Add_Company = async(req, res) => {
             if(err)
                 return (err);
             //console.log(req.body.firstName);
-            return res.redirect('company');
+            res.redirect('company');
         });
 
     }
@@ -134,13 +120,54 @@ Company_Form_Controller.Delete_Company = async(req, res) => {
     return user;
     })
     
-    if(user.status == 'recruiter')
+    if(user.status == 'Entreprise')
     {   
         let id = {user: user.id};
         Company.findOneAndDelete(id, function(err, user){
             if(err)
                 return (err);
             return res.status(200).send("Company deleted");
+
+        })
+    }
+
+}
+
+// MEthod for finding user profiles
+
+Company_Form_Controller.CandidateProfiles = async(req, res) => {
+    const bearerheader = req.headers["authorization"];
+
+    if(typeof bearerheader != undefined)
+    {   
+        const bearer = bearerheader.split(" ");
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        console.log('token:' + req.token);
+    }
+    else
+        return res.status(403).send('Token not found');
+    //console.log(req.token);
+    var user = jwt.decode(req.token, function (err, user)
+    {
+    if(err)
+        return (err);
+    return user;
+    })
+        
+    if(user.status == 'Entreprise')
+    {   
+        Company.find({}, function(err, companies) {
+            if(err)
+                return (err)
+            res.status(200).send(companies);
+            console.log(companies);
+        })
+
+        Applicant.find ({Tags:companies.Tags}, function(err, applicants){
+            if(err)
+                return (err);
+            return res.status(200).send(applicants);
 
         })
     }

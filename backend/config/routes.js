@@ -38,6 +38,9 @@ router.delete('/company',(req,res) =>{
     Company_Form_Controller.Delete_Company(req,res);
 });
 
+router.get('/profiles', (req, res) =>{
+    Company_Form_Controller.CandidateProfiles(req,res);
+});
 
 
 export default router;

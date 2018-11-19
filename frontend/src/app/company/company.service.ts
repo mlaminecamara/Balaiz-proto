@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 
 const httpOptions = {
   headers : new HttpHeaders ({
@@ -15,25 +13,25 @@ const httpOptions = {
     providedIn: 'root'
   })
 
-export class ApplicantService {
+export class CompanyService {
  public data: any;
 constructor(private http: HttpClient, private router: Router) {}
 
-    addApplicant(update) {
+    addCompany(update) {
       // console.log('cc');
-      const addedApplicant = update;
-      console.log(addedApplicant);
-      const test = JSON.stringify(addedApplicant);
+      const addedCompany = update;
+      console.log(addedCompany);
+      const test = JSON.stringify(addedCompany);
       console.log(test);
-      this.http.post('http://localhost:8080/api/applicant', test, httpOptions)
+      this.http.post('http://localhost:8080/api/company', test, httpOptions)
       .subscribe((res) => {
         console.log(res);
       });
     }
 
 
-  ShowApplicant() {
-  this.http.get('http://localhost:8080/api/applicant', httpOptions)
+  ShowCompany() {
+  this.http.get('http://localhost:8080/api/company', httpOptions)
   .subscribe(res => {
     console.log(res);
   });
@@ -41,4 +39,3 @@ constructor(private http: HttpClient, private router: Router) {}
   }
 
 }
-

@@ -1,3 +1,94 @@
-<p>
-  company works!
-</p>
+<div class="container-fluid py-3">
+  <div class="row">
+      <div class="col-md-6 mx-auto">
+              <button (click)="OnLogout()">Logout</button>
+              <button (click)="userProfiles()">Voir profils</button>
+              <div class="card card-body">
+                  <h3 class="text-center mb-4">Formulaire Entreprise</h3>
+                  <form #postForm="ngForm" (ngSubmit)="onPost(postForm)">
+                      <div class="form-group has-error">
+                          <input class="form-control input-lg" ngModel #nameInput="ngModel" placeholder="Nom de l'Entreprise" id="CompanyName" name="Company_Name" type="text" required>
+                      </div><br>
+
+                      <div class="form-group has-error">
+                               <input class="form-control input-lg" ngModel #contactInput="ngModel" placeholder="Nom du Contact" id="Contact_Name" name="Contact_Name" type="text" required>
+                       </div><br>
+                      <div class="form-group has-error">
+                          <input class="form-control input-lg" ngModel #PositionInput="ngModel" placeholder="Poste du contact" id="Contact_Position" name="Contact_Position" type="text" required>
+                      </div> <br>
+
+                      <div class="form-group has-error">
+                          <input class="form-control input-lg" ngModel #emailInput="ngModel" placeholder="E-mail" id=" Contact_Email" name="Contact_Email" type="text" required>
+                      </div><br>
+
+                      <div class="form-group has-error">
+                           <input class="form-control input-lg" ngModel #telInput="ngModel" placeholder="Telephone" id="Contact_Tel" name="Contact_Tel" type="text">
+                      </div><br>
+
+                      <div class="form-group has-error">
+                         <input class="form-control input-lg" ngModel #industryInput="ngModel" placeholder="Secteur d'activité" id="Company_Industry" name="Company_Industry" type="text">
+                      </div><br>
+
+                      <div class="form-group has-error">
+                          <label> A partir de quelle date recherchez-vous?</label>
+                           <input class="form-control input-lg" ngModel #startdateInput="ngModel" placeholder="Date de debut de stage" id="Internship_Startdate" name="Internship_Startdate" type="text" required>
+                      </div><br>
+
+                      <div>
+                          <label> Pour quelle durée recherchez-vous?</label>
+                           <select class="form-control input-lg" ngModel #durationInput="ngModel" placeholder="Durée du stage" id="duration" name="Duration" required>
+                          <option [ngValue]="duree" *ngFor="let duree of Duration"> {{ duree }}</option>
+                          </select>
+                      </div> <br>
+
+                      <div>
+                          <label> Quelle est votre Stack FrontEnd?</label>
+                          <select class="form-control input-lg" ngModel #frontendInput="ngModel" placeholder="Front End Stack" id="FrontEnd_Stack" name="FrontEnd_Stack" required>
+                              <option [ngValue]="front" *ngFor="let front of FrontEnd_Stack"> {{ front }}</option>
+                          </select>
+                      </div><br>
+
+                      <div>
+                          <label> Avec quelle type de base de données travaillez-vous?</label>
+                          <select class="form-control input-lg" ngModel #bddInput="ngModel" placeholder="Bases de données" id="Database" name="Database" type="text" required>
+                              <option [ngValue]="database" *ngFor="let database of Database"> {{ database }}</option>
+                          </select>
+                      </div><br>
+
+
+                      <div>
+                          <label> Quels langages serveurs utlisez-vous</label>
+                          <select class="form-control input-lg" ngModel #serveursInput="ngModel" placeholder="Stack backend" id="BackEnd_Stack" name="BackEnd_Stack" type="text" required>
+                                  <option [ngValue]="back" *ngFor="let back of BackEnd_Stack"> {{ back }}</option>
+                          </select>
+                      </div><br>
+
+                      <div>
+                          <label>Quel Framework utilisez-vous</label>
+                          <select class="form-control input-lg" ngModel #frameworkInput="ngModel" placeholder="Choisissez votre framework back" id="Framework_Back" name="Framework_Back" type="text" required>
+                                  <option [ngValue]="framework" *ngFor="let framework of Framework_Back "> {{ framework}}</option>
+                          </select>
+                      </div><br>
+
+                      <div class="form-group has-error">
+                              <label>Décrivez la ou les missions du stagiaire</label>
+                              <textarea class="form-control input-lg" ngModel #projetsInput="ngModel" placeholder="Missions" id="Mission_Description" name="Mission_Description" required>
+                              </textarea>
+                      </div>
+
+                      <div>
+                          <label>Que recherchez-vous comme profil de développeur?</label>
+                          <select class="form-control input-lg" ngModel #tagInput="ngModel" placeholder="Choisissez le profil de developpeur?" id="model.Tags" name="Tags" type="text" required>
+                                  <option [ngValue]="tag" *ngFor="let tag of Tags"> {{ tag }}</option>
+                          </select>
+                      </div><br>
+
+                      <input class="btn btn-lg btn-info btn-block" value="Soumettre" type="submit" [disabled]="!postForm.valid">
+                   </form>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+

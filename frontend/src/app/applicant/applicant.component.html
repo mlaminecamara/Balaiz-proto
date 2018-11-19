@@ -1,128 +1,130 @@
 <div class="container-fluid py-3">
     <div class="row">
         <div class="col-md-6 mx-auto">
+            <button  (click)="OnLogout()">Logout</button>
                 <div class="card card-body">
                     <h3 class="text-center mb-4">Formulaire candidat</h3>
                     <form #postForm="ngForm" (ngSubmit)="onPost(postForm)">
                         <div class="form-group has-error">
-                            <input class="form-control input-lg" [(ngModel)]="model.firstname" placeholder="Prénom" id="firstname" name="firstName" type="text" required>
+                            <input class="form-control input-lg" ngModel #firstnameInput="ngModel" placeholder="Prénom" id="firstname" name="firstName" type="text" required>
                         </div><br>
 
-                        <div class="form-group has-error"> 
-                                 <input class="form-control input-lg" [(ngModel)]="model.lastname" placeholder="Nom" id="lastname" name="lastName" type="text" required>
+                        <div class="form-group has-error">
+                                 <input class="form-control input-lg" ngModel #lastnameInput="ngModel" placeholder="Nom" id="lastname" name="lastName" type="text" required>
                          </div><br>
-                        <div class="form-group has-error"> 
-                            <input class="form-control input-lg" [(ngModel)]="model.tel" placeholder="Telephone" id="tel" name="tel" type="" required>
+                        <div class="form-group has-error">
+                            <input class="form-control input-lg" ngModel #TelephoneInput="ngModel" placeholder="Telephone" id="tel" name="tel" type="" required>
                         </div> <br>
-                        
+
                         <div class="form-group has-error">
-                            <input class="form-control input-lg" [(ngModel)]="model.email" placeholder="E-mail" id="email" name="email" type="text" required>
+                            <input class="form-control input-lg" ngModel #emailInput="ngModel" placeholder="E-mail" id="email" name="email" type="text" required>
                         </div><br>
- 
+
                         <div class="form-group has-error">
-                             <input class="form-control input-lg" [(ngModel)]="model.school" placeholder="Ecole" id="school" name="school" type="text">
+                             <input class="form-control input-lg" ngModel #schoolInput="ngModel" placeholder="Ecole" id="school" name="school" type="text">
                         </div><br>
 
                         <div>
-                            <label for=""> Quel type de formation as-tu suivi?</label>
-                            <select class="form-control input-lg" [(ngModel)]="model.Ed_Type" placeholder="Education" id="education" name="Ed_Type" required>
+                            <label> Quel type de formation as-tu suivi?</label>
+                            <select class="form-control input-lg" ngModel #educationInput="ngModel" placeholder="Education" id="education" name="Ed_Type" required>
                                 <option *ngFor="let ed of Ed_Type"  [ngValue]="ed"> {{ ed }}</option>
                             </select>
                          </div> <br>
 
                         <div class="form-group has-error">
-                           <input class="form-control input-lg" [(ngModel)]="model.Github" placeholder="Github/LinkedIn/Site perso" id="Github" name="Github" type="text">
-                        </div><br> 
+                           <input class="form-control input-lg" ngModel #githubInput="ngModel" placeholder="Github/LinkedIn/Site perso" id="Github" name="Github" type="text">
+                        </div><br>
 
-                        <div class="form-group has-error"> 
-                            <label for=""> A partir de quelle date es-tu disponible?</label>
-                             <input class="form-control input-lg" [(ngModel)]="model.Start_Date" placeholder="Date de debut de stage" id="Start_Date" name="Start_Date" type="text" required> 
+                        <div class="form-group has-error">
+                            <label> A partir de quelle date es-tu disponible?</label>
+                             <input class="form-control input-lg" ngModel #startdateInput="ngModel" placeholder="Date de debut de stage" id="Start_Date" name="Start_Date" type="text" required>
                         </div><br>
 
                         <div>
-                            <label for=""> Quelle est la durée de ton stage?</label>
-                             <select class="form-control input-lg" [(ngModel)]="model.Duration" placeholder="Durée du stage" id="duration" name="Duration" required>
-                            <option [ngValue]="duree" *ngFor="let duree of Duration"> {{ duree }}</option> 
+                            <label> Quelle est la durée de ton stage?</label>
+                             <select class="form-control input-lg" ngModel #dureeInput="ngModel" placeholder="Durée du stage" id="duration" name="Duration" required>
+                            <option [ngValue]="duree" *ngFor="let duree of Duration"> {{ duree }}</option>
                             </select>
                         </div> <br>
 
-                        <div class="form-group has-error"> 
-                            <label for=""> Quand dois-tu finir ton stage au plus tard?</label> 
-                            <input class="form-control input-lg" [(ngModel)]="model.Max_Finish_Date" placeholder="Date maximale de fin de stage" id="Max_Finish_Date" name="Max_Finish_Date" type="text">
+                        <div class="form-group has-error">
+                            <label> Quand dois-tu finir ton stage au plus tard?</label>
+                            <input class="form-control input-lg" ngModel #datefinstageInput="ngModel" placeholder="Date maximale de fin de stage" id="Max_Finish_Date" name="Max_Finish_Date" type="text">
                         </div><br>
 
-                        <div> 
-                             <label for=""> Est-ce ton stage de fin d'étude?</label> 
-                             <select class="form-control input-lg" [(ngModel)]="model.Last_Internship" placeholder="S'agit-il de votre dernier stage?" id="Last_Internship" name="Last_Internship"  required>
+                        <div>
+                             <label> Est-ce ton stage de fin d'étude?</label>
+                             <select class="form-control input-lg" ngModel #finstageInput="ngModel" placeholder="S'agit-il de votre dernier stage?" id="Last_Internship" name="Last_Internship"  required>
                              <option [ngValue]="lastIntern" *ngFor="let lastIntern of Last_Internship"> {{ lastIntern }}</option>
                              </select>
                          </div> <br>
 
                          <div>
-                             <label for=""> Es-tu en recherche active?</label> 
-                            <select class="form-control input-lg" [(ngModel)]="model.Active_Status" placeholder="Etes-vous en recherche active?" id="Active_Status" name="Active_Status" required> 
+                             <label> Es-tu en recherche active?</label>
+                            <select class="form-control input-lg" ngModel #activeInput="ngModel" placeholder="Etes-vous en recherche active?" id="Active_Status" name="Active_Status" required>
                                 <option [ngValue]="active" *ngFor="let active of Active_Status"> {{ active }}</option>
                             </select>
                         </div><br>
 
                         <div>
-                            <label for=""> As-tu de l'expérience en développement Web ?</label> 
-                            <select class="form-control input-lg" [(ngModel)]="model.Webdev_Experience" placeholder="Avez-vous de l'expérience en web development?" id="Webdev_Experience" name="Webdev_Experience" required>
+                            <label> As-tu de l'expérience en développement Web ?</label>
+                            <select class="form-control input-lg" ngModel #experienceInput="ngModel" placeholder="Avez-vous de l'expérience en web development?" id="Webdev_Experience" name="Webdev_Experience" required>
                                 <option [ngValue]="experience" *ngFor="let experience of Webdev_Experience"> {{ experience }}</option>
                             </select>
                         </div><br>
 
                         <div>
-                            <label for=""> Quelles technos Frontend as-tu déjà utilisé?</label>
-                            <select class="form-control input-lg" [(ngModel)]="model.FrontEnd_Stack" placeholder="Choisissez votre Stack frontend" id="FrontEnd_Stack" name="FrontEnd_Stack" required>
+                            <label> Quelles technos Frontend as-tu déjà utilisé?</label>
+                            <select class="form-control input-lg" ngModel #frontendInput="ngModel" placeholder="Choisissez votre Stack frontend" id="FrontEnd_Stack" name="FrontEnd_Stack" required>
                                 <option [ngValue]="front" *ngFor="let front of FrontEnd_Stack"> {{ front }}</option>
                             </select>
                         </div><br>
 
                         <div>
-                            <label for=""> Avec quelle techno es-tu expérimenté en base de données</label>
-                            <select class="form-control input-lg"  [(ngModel)]="model.Database"  placeholder="Avec quelles bases de données avez-vous travaillé?" id="Database" name="Database" type="text" required>
+                            <label> Avec quelle techno es-tu expérimenté en base de données</label>
+                            <select class="form-control input-lg" ngModel #bddInput="ngModel" placeholder="Avec quelles bases de données avez-vous travaillé?" id="Database" name="Database" type="text" required>
                                 <option [ngValue]="database" *ngFor="let database of Database"> {{ database }}</option>
                             </select>
                         </div><br>
 
 
                         <div>
-                            <label for=""> Quels langages serveurs as-tu déjà utilisé?</label>
-                            <select class="form-control input-lg" [(ngModel)]="model.BackEnd_Stack" placeholder="Choisissez votre Stack backend" id="BackEnd_Stack" name="BackEnd_Stack" type="text" required>
+                            <label> Quels langages serveurs as-tu déjà utilisé?</label>
+                            <select class="form-control input-lg" ngModel #serveursInput="ngModel" placeholder="Choisissez votre Stack backend" id="BackEnd_Stack" name="BackEnd_Stack" type="text" required>
                                     <option [ngValue]="back" *ngFor="let back of BackEnd_Stack"> {{ back }}</option>
                             </select>
                         </div><br>
 
                         <div>
-                            <label for="">As-tu travaillé avec un Framework ?</label>
-                            <select class="form-control input-lg" [(ngModel)]="model.Framework_Back" placeholder="Choisissez votre framework back" id="Framework_Back" name="Framework_Back" type="text" required>
+                            <label>As-tu travaillé avec un Framework ?</label>
+                            <select class="form-control input-lg" ngModel #frameworkInput="ngModel" placeholder="Choisissez votre framework back" id="Framework_Back" name="Framework_Back" type="text" required>
                                     <option [ngValue]="framework" *ngFor="let framework of Framework_Back "> {{ framework}}</option>
                             </select>
                         </div><br>
 
                         <div class="form-group has-error">
-                                <label for="">Parle nous de tes projets réalisés</label>
-                                <textarea class="form-control input-lg" [(ngModel)]="model.Projects_Description" placeholder="Décrivez les projets déjà effectués" id="Projects_Description" name="Projects_Description" required>
+                                <label>Parle nous de tes projets réalisés</label>
+                                <textarea class="form-control input-lg" ngModel #projetsInput="ngModel" placeholder="Décrivez les projets déjà effectués" id="Projects_Description" name="Projects_Description" required>
                                 </textarea>
                         </div>
 
                         <div class="form-group has-error">
-                                <label for="">Quelle est la date de ton prochain stage, après celui-ci?</label>
-                                <input class="form-control input-lg" [(ngModel)]="model.Next_Internship_Startdate" placeholder="Quelle est la date de votre prochain stage?" id="Next_Internship_Startdate" name="Next_Internship_Startdate" type="text" >
+                                <label>Quelle est la date de ton prochain stage, après celui-ci?</label>
+                                <input class="form-control input-lg" ngModel #prochainstageInput="ngModel" placeholder="Quelle est la date de votre prochain stage?" id="Next_Internship_Startdate" name="Next_Internship_Startdate" type="text" >
                         </div><br>
 
                         <div>
-                            <label for="">Qu'est-ce qui vous qualifie le mieux en tant que développeur ?</label>
-                            <select class="form-control input-lg" [(ngModel)]="model.Tags" placeholder="Choisissez le tag qui vous correspond le plus?" id="model.Tags" name="Tags" type="text" required>
+                            <label>Qu'est-ce qui vous qualifie le mieux en tant que développeur ?</label>
+                            <select class="form-control input-lg" ngModel #tagInput="ngModel" placeholder="Choisissez le tag qui vous correspond le plus?" id="model.Tags" name="Tags" type="text" required>
                                     <option [ngValue]="tag" *ngFor="let tag of Tags"> {{ tag }}</option>
                             </select>
                         </div><br>
 
-                        <input class="btn btn-lg btn-info btn-block" value="Soumettre" type="submit" [disabled]="!postForm.valid"> 
+                        <input class="btn btn-lg btn-info btn-block" value="Soumettre" type="submit" [disabled]="!postForm.valid">
                      </form>
                 </div>
             </div>
         </div>
     </div>
-    <p (click)="OnLogout()">component works</p>
+
+

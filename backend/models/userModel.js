@@ -9,13 +9,7 @@ let userSchema = new Schema({
     email: String,
     password: String,
     mobile: String, 
-    status: {type: String, enum: ['applicant', 'recruiter', 'admin']},
-    // role: {
-    //     type: String, 
-    //     required: () => {
-    //         return this.status !== 'applicant';
-    //     }
-    // },
+    status: {type: String, enum: ['Candidat', 'Entreprise', 'admin']},
     created_at: Date,
     updated_at: Date,
     last_login: Date

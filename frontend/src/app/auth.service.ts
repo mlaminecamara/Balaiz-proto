@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,17 +19,22 @@ export class AuthService {
       this.data = resp;
       console.log(this.data);
       localStorage.setItem('jwtToken', this.data.token);
-      this.router.navigate(['applicant']);
+      if (this.data.status === 'Candidat') {
+        this.router.navigate(['applicant']);
+      } else if (this.data.status === 'Entreprise') {
+        this.router.navigate(['recruiter']);
+      }
+      return;
     });
   }
 
-  register(firstName: string, lastName: string, email: string, password: string) {
-    const registerData = {firstName: firstName, lastName: lastName, email: email, password: password };
-    this.http.post('http://localhost:8080/auth/register', registerData).subscribe(resp => {
-      this.data = resp;
+  register(firstname: string, lastname: string, email: string, password: string, status: string) {
+    const registerData = {firstname: firstname, lastname: lastname, email: email, password: password, status: status};
+    // console.log(registerData);
+    this.http.post('http://localhost:8080/auth/register', registerData, {responseType: 'text'})
+    .subscribe((res) => {
+      console.log('c');
       this.router.navigate(['login']);
-    }, err => {
-      this.message = err.error.msg;
     });
   }
 
@@ -49,5 +55,7 @@ export class AuthService {
       return !this.jwtHelper.getTokenExpirationDate(token) || !this.jwtHelper.isTokenExpired(token);
     }
   }
+
+
 
 }

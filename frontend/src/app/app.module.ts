@@ -6,6 +6,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { AuthGuardService as AuthGuard } from './auth-guard.service';
 
 import { AppComponent } from './app.component';
@@ -26,6 +27,11 @@ const routes: Routes = [
   {
     path: 'applicant',
     component: ApplicantComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'recruiter',
+    component: CompanyComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -57,7 +63,7 @@ const routes: Routes = [
       }
     }),
     FormsModule,
-    BrowserModule
+    BrowserModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

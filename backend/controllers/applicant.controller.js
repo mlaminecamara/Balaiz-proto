@@ -8,6 +8,11 @@ const Applicant_Form_Controller = {};
 
 // Method to display user applicant form 
 Applicant_Form_Controller.Show_Applicant = async(req, res) => {
+    let formatted_StartDate = moment(req.body.Start_Date, "DD/MM/YYYY");
+    //console.log(formatted_StartDate);
+    let formatted_MaxFinishDate = moment(req.body.Max_Finish_Date,"DD/MM/YYYY");
+    let formatted_NextIntershipStartDate = moment(req.body.Next_Internship_Startdate,"DD/MM/YYYY");
+    
     const bearerheader = req.headers["authorization"];
 
     if(typeof bearerheader != undefined)
@@ -26,36 +31,13 @@ Applicant_Form_Controller.Show_Applicant = async(req, res) => {
         return (err);
     return user;
     })
-    if(user.status == 'applicant')
+    if(user.status == 'Candidat')
     {
         let query = {user: user.id};
-        let fields= {
-            firstName:true,
-            lastName:true,
-            tel:true,
-            email:true,
-            school:true,
-            Ed_Type:true,
-            Github:true,
-            Start_Date:true,
-            Duration:true,
-            Max_finish_Date:true,
-            Last_Internship:true,
-            Active_Status:true,
-            Webdev_Experience:true,
-            FrontEnd_Stack:true,
-            Projects_Description:true,
-            Database:true,
-            Next_Internship_Startdate:true,
-            BackEnd_Stack:true,
-            Framework_Back:true,
-            Tags:true
-        }
-
-        Applicant.findOne(query,fields,function(err,user){
+        Applicant.findOne(query,function(err,user){
             if(err)
                 return (err);
-            return res.status(200).json(fields);
+            res.status(200).json(user);
         });
 
     }
@@ -71,13 +53,13 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
     let formatted_NextIntershipStartDate = moment(req.body.Next_Internship_Startdate,"DD/MM/YYYY");
 
     const bearerheader = req.headers["authorization"];
-
+    console.log(bearerheader);
     if(typeof bearerheader != undefined)
     {   
         const bearer = bearerheader.split(" ");
         const bearerToken = bearer[1];
         req.token = bearerToken;
-        //console.log('token:' + req.token);
+        console.log('token:' + req.token);
     }
     else
         return res.status(403).send('Token not found');
@@ -91,7 +73,7 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
 
     console.log(user);
     
-    if(user.status == 'applicant')
+    if(user.status == 'Candidat')
     {   
         //console.log('cc')
         let query = {user: user.id};
@@ -123,8 +105,8 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
         Applicant.findOneAndUpdate(query,update,options,function(err,user){
             if(err)
                 return (err);
-            //console.log(req.body.firstName);
-            return res.status(200).json(update);
+            console.log(req.body.firstName);
+            res.status(200).json(update);
         });
 
     }
@@ -133,7 +115,7 @@ Applicant_Form_Controller.Add_Applicant = async(req, res) => {
 
 // Method to delete user applicant form
 Applicant_Form_Controller.Delete_Applicant = async(req, res) => {
-    const bearerheader = req.headers["authorization"];
+    const bearerheader = req.headers["Authorization"];
 
     if(typeof bearerheader != undefined)
     {   
@@ -152,7 +134,7 @@ Applicant_Form_Controller.Delete_Applicant = async(req, res) => {
     return user;
     })
     
-    if(user.status == 'applicant')
+    if(user.status == 'Candidat')
     {   
         let id = {user: user.id};
         Applicant.findOneAndDelete(id, function(err, user){

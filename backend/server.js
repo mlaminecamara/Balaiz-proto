@@ -2,12 +2,12 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
+
 // DATABASE
 //MongoDB
 import database from './database.js'
 import User from './models/userModel';
 database.connectDb();
-
 
 //PassportJS
 import passport from 'passport';
@@ -24,14 +24,16 @@ app.use(bodyParser.urlencoded({
   }))
 app.use(bodyParser.json())
 app.use(cors());
-// app.use(function(req, res, next) {
-//     //console.log('ddd');
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     res.header('Access-Control-Allow-Methods', 'GET', 'POST', 'PUT', 'DELETE', 'OPTIONS');
-//     //console.log("cc");
-//     next();
-// })
+
+app.use(function(req, res, next) {
+    // console.log('ddd');
+    res.setHeader("Access-Control-Allow-Origin", '*');
+    res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, X-Api-Key");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS");
+    //console.log("cc");
+    next();
+})
+
 
 //Instantiate passportJs
 app.use(passport.initialize());
@@ -62,6 +64,7 @@ passport.use(new JWTStrategy({
 // Routes
 import routes from './config/routes';
 import auth from './config/auth.routes';
+
 app.use('/api',passport.authenticate('jwt',{session: false}), routes);
 app.use('/auth', auth);
 // Launch Server
